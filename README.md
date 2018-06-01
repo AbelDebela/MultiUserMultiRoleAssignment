@@ -7,7 +7,8 @@ A couple of years ago, when I was dealing with this kind of challenge, I build t
 
 First, I created a view form to display all active users and available system roles. You can select multiple users & roles from the list on the view form.
 
-Then you have two choices (buttons) that assign roles for selected users, or remove roles from selected users. Pressing these two buttons calls same record operation with different parameter and assign / remove system roles.
+Then you have two choices (buttons) that __assign roles__ for selected users, or __remove roles__ from selected users. Pressing these two buttons calls same record operation with different parameter and assign / remove system roles.
 
 Note that this solution is intended to address standard desktop security features and it doesn’t address mobile devices security features.
 
+![multiroleassignment](https://user-images.githubusercontent.com/11167096/40851816-550e7294-657d-11e8-8130-3edd12c4b1bd.PNG)
