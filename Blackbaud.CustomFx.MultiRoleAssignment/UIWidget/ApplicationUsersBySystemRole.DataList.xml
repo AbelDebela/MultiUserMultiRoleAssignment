@@ -1,0 +1,49 @@
+﻿<DataListSpec 
+	xmlns="bb_appfx_datalist"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="8a1cfe0e-54b3-4c2a-a9b8-792b8fe1fdfb" 
+	Name="Application Users By System Role Data List"
+	Description="A data list showing application users by system role records." 
+	Author="Abel C. Debela"
+	c:SecurityUIFolder="Application Users By System Role"
+	>
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_APPLICATIONUSERSBYSYSTEMROLE">
+		<c:CreateProcedureSQL>
+			<![CDATA[
+create procedure dbo.USR_USP_DATALIST_APPLICATIONUSERSBYSYSTEMROLE
+as
+select TOP 6
+  SR.ID
+  , SR.NAME as SYSTEMROLENAME
+  , COUNT(1) NUMBEROFUSERS 
+from 
+  dbo.SYSTEMROLEAPPUSER SRAU
+  inner join dbo.SYSTEMROLE SR ON SRAU.SYSTEMROLEID = SR.ID
+GROUP BY SR.ID, SR.NAME
+ORDER BY COUNT(1) DESC
+			]]>
+		</c:CreateProcedureSQL>
+	</SPDataList>
+
+
+	<!-- describe any parameters (other than the context ID) defined on the SP
+	<Parameters>
+		<FormMetaData xmlns="bb_appfx_commontypes">
+			<FormFields>
+				<FormField FieldID="PARAMETER1" Caption="Paramter1" DataType="REPLACE_WITH_DATATYPE"/>
+			</FormFields>
+		</FormMetaData>
+	</Parameters>-->
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="ID" Caption="ID" DataType="Guid" IsHidden="true" />
+			<OutputField FieldID="SYSTEMROLENAME" Caption="System Role" DataType="String" />
+			<OutputField FieldID="NUMBEROFUSERS" Caption="Number of Users" DataType="Integer" />
+		</OutputFields>
+	</Output>
+
+</DataListSpec>

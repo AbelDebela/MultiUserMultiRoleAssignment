@@ -1,0 +1,28 @@
+﻿<ReportSpec 
+	xmlns="bb_appfx_report"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="44a83043-7307-4de5-af8c-bfe3c0188908" 
+	Name="Application User Matrix Report"
+	Description="A report showing information about application user and system roles records"
+	Author="Abel C. Debela"
+	>
+
+	<RDLFileName>ApplicationUserMatrix.rdl</RDLFileName>
+	<Folder>System Reports/Misc Reports</Folder>
+	
+	<DataRetrieval>
+		<CreateSQL ObjectName="dbo.USR_USP_REPORT_APPLICATIONUSERMATRIX" ObjectType="SQLStoredProc">
+			<![CDATA[
+create procedure dbo.USR_USP_REPORT_APPLICATIONUSERMATRIX
+as
+	 select AU.ID as APPUSERID, AU.DISPLAYNAME
+ , SR.ID as SYSTEMROLEID, SR.NAME
+  from APPUSER AU
+ LEFT JOIN SYSTEMROLEAPPUSER SRAU ON AU.ID = SRAU.APPUSERID
+ LEFT JOIN SYSTEMROLE SR ON SRAU.SYSTEMROLEID = SR.ID
+ORDER BY AU.DISPLAYNAME COLLATE SQL_Latin1_General_Cp437_BIN
+			]]>
+		</CreateSQL>
+	</DataRetrieval>
+	
+</ReportSpec>

@@ -1,0 +1,11 @@
+C:\ProgramNet\MultiRoleAssignment\Blackbaud.CustomFx.MultiRoleAssignment\obj\Debug\Blackbaud.CustomFx.MultiRoleAssignment.dll
+C:\ProgramNet\MultiRoleAssignment\Blackbaud.CustomFx.MultiRoleAssignment\obj\Debug\Blackbaud.CustomFx.MultiRoleAssignment.pdb
+C:\ProgramNet\MultiRoleAssignment\Blackbaud.CustomFx.MultiRoleAssignment\obj\Blackbaud.CustomFx.MultiRoleAssignment.dll
+C:\ProgramNet\MultiRoleAssignment\Blackbaud.CustomFx.MultiRoleAssignment\obj\Blackbaud.CustomFx.MultiRoleAssignment.pdb
+C:\ProgramNet\MultiRoleAssignment\Blackbaud.CustomFx.MultiRoleAssignment\obj\Blackbaud.CustomFx.MultiRoleAssignment.dll.CodeAnalysisLog.xml
+C:\ProgramNet\MultiRoleAssignment\Blackbaud.CustomFx.MultiRoleAssignment\obj\Blackbaud.CustomFx.MultiRoleAssignment.dll.lastcodeanalysissucceeded
+C:\ProgramNet\MultiRoleAssignment\Blackbaud.CustomFx.MultiRoleAssignment\obj\Blackbaud.AppFx.dll
+C:\ProgramNet\MultiRoleAssignment\Blackbaud.CustomFx.MultiRoleAssignment\obj\Blackbaud.AppFx.UIModeling.Core.dll
+C:\ProgramNet\MultiRoleAssignment\Blackbaud.CustomFx.MultiRoleAssignment\obj\Blackbaud.AppFx.XmlTypes.XmlSerializers.dll
+C:\ProgramNet\MultiRoleAssignment\Blackbaud.CustomFx.MultiRoleAssignment\obj\Blackbaud.AppFx.xml
+C:\ProgramNet\MultiRoleAssignment\Blackbaud.CustomFx.MultiRoleAssignment\obj\Debug\Blackbaud.CustomFx.MultiRoleAssignment.vbprojResolveAssemblyReference.cache

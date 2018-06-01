@@ -1,0 +1,137 @@
+﻿<RecordOperationSpec
+	xmlns="bb_appfx_recordoperation"
+	xmlns:common="bb_appfx_commontypes"
+	ID="ce8f50ef-cdb1-41ee-8a8e-1d1566e4fc76"
+	Name="Assign - Remove roles to users"
+	Description="Assigns - Remove roles to users"
+	Author="Abel C. Debela"
+	OperationType="Update"
+	RecordType="Constituent"
+	common:SecurityUIFolder="Constituent"
+	>
+
+	<SPRecord>
+		<SPOperationImplementation SPName="USP_USR_ASSIGNUSERSTOROLES">
+			<common:CreateProcedureSQL>
+				<![CDATA[
+create procedure dbo.USP_USR_ASSIGNUSERSTOROLES
+(
+	@ID uniqueidentifier
+	,@CHANGEAGENTID uniqueidentifier = null
+	,@SELECTEDUSERIDLIST nvarchar(max) = null 
+	,@SELECTEDROLEIDLIST nvarchar(max) = null
+	,@ACTION int = 0 --for Assign role, 1 for Remove Role
+)
+as begin
+	--check deletion rules, if any
+Declare @CURRENTDATE datetime
+set @CURRENTDATE = GetDate();
+
+Declare @SELECTEDUSERIDLIST_XML xml , @SELECTEDROLEIDLIST_XML xml 
+
+if @CHANGEAGENTID is null
+		exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output;
+
+set @SELECTEDUSERIDLIST_XML = convert(xml,@SELECTEDUSERIDLIST)
+set @SELECTEDROLEIDLIST_XML = convert(xml,@SELECTEDROLEIDLIST)
+
+Declare @SELECTEDUSERS table(APPUSERID uniqueidentifier)
+INSERT INTO @SELECTEDUSERS (APPUSERID)
+select 
+	USER_REF.value('USERID[1]','varchar(100)') USERID
+FROM @SELECTEDUSERIDLIST_XML.nodes('//USER_LIST/I_HEADER') as U(USER_REF)
+
+Declare @SELECTEDROLES table(ROLEID uniqueidentifier)
+INSERT INTO @SELECTEDROLES (ROLEID)
+select 
+	ROLE_REF.value('ROLEID[1]','varchar(100)') ROLEID
+FROM @SELECTEDROLEIDLIST_XML.nodes('//ROLE_LIST/I_HEADER') as R(ROLE_REF)
+
+
+
+--INSERT INTO BUGFINDER(DESCRIPTION) VALUES (convert(varchar(max),@SELECTEDUSERIDLIST) + '___________________'+ convert(varchar(max),@SELECTEDROLEIDLIST)) ;
+
+IF @ACTION = 0 -- Assign Role
+BEGIN	
+		INSERT INTO dbo.SYSTEMROLEAPPUSER (
+			SYSTEMROLEID
+			,APPUSERID
+			,ADDEDBYID
+			,CHANGEDBYID
+			,DATEADDED
+			,DATECHANGED
+			,FROMROLESYNC
+			,SECURITYMODECODE
+			,CONSTITUENTSECURITYMODECODE
+			,ACCOUNTINGELEMENTSECURITYMODECODE)
+		SELECT 
+			SORTEDUSERWITHROLES.ROLEID
+			,SORTEDUSERWITHROLES.APPUSERID 
+			,@CHANGEAGENTID
+			,@CHANGEAGENTID
+			,@CURRENTDATE
+			,@CURRENTDATE
+			,0
+			,0
+			,0
+			,0
+			FROM 
+      (
+		      SELECT 
+            APPUSERID
+            ,ROLEID 
+          FROM 
+		              (
+		                    SELECT 
+                          SU.APPUSERID
+                          ,SR.ROLEID 
+                        FROM 
+                          @SELECTEDUSERS SU
+		                      CROSS JOIN @SELECTEDROLES SR
+                    ) SUMMARIZED
+		          GROUP BY 
+                APPUSERID
+                , ROLEID 
+        ) SORTEDUSERWITHROLES
+		LEFT JOIN SYSTEMROLEAPPUSER SRAU ON SORTEDUSERWITHROLES.APPUSERID = SRAU.APPUSERID and SORTEDUSERWITHROLES.ROLEID = SRAU.SYSTEMROLEID
+		WHERE SRAU.ID is null
+
+END
+
+IF @ACTION = 1 -- Remove Role
+BEGIN	
+	DELETE 
+  FROM 
+    SYSTEMROLEAPPUSER 
+  WHERE 
+    ID IN (
+	            SELECT 
+                DISTINCT SRAU.ID 
+              FROM (
+	                    SELECT 
+                        * 
+                      FROM 
+                        @SELECTEDUSERS
+	                    CROSS JOIN @SELECTEDROLES
+                   ) REMOVELIST
+	            JOIN SYSTEMROLEAPPUSER SRAU ON REMOVELIST.APPUSERID = SRAU.APPUSERID and REMOVELIST.ROLEID = SRAU.SYSTEMROLEID
+	)
+END
+	return 0;
+	
+end
+				]]>
+			</common:CreateProcedureSQL>
+		</SPOperationImplementation>
+	</SPRecord>
+
+	<!-- optionally, offer a prompt before executing the record operation -->
+	<Parameters>
+		<FormFields>
+			<common:FormField FieldID="SELECTEDUSERIDLIST" Caption="SELECTEDUSERIDLIST" DataType="String" />
+			<common:FormField FieldID="SELECTEDROLEIDLIST" Caption="SELECTEDROLEIDLIST" DataType="String" />
+			<common:FormField FieldID="ACTION" Caption="ACTION" DataType="Integer" />
+		</FormFields>
+	</Parameters>
+
+</RecordOperationSpec>

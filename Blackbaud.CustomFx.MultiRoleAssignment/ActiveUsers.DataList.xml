@@ -1,0 +1,56 @@
+﻿<DataListSpec 
+	xmlns="bb_appfx_datalist"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="9ec070b3-6b89-46d9-9bed-160cbc64d27e" 
+	Name="Active Users Data List"
+	Description="A data list showing active users records." 
+	Author="Abel C. Debela"
+	c:SecurityUIFolder="Active Users"
+	>
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_ACTIVEUSERS">
+		<c:CreateProcedureSQL>
+			<![CDATA[
+create procedure dbo.USR_USP_DATALIST_ACTIVEUSERS
+
+as
+SELECT 
+	AU.ID as ID
+	,ISNULL(AU.DISPLAYNAME,AU.USERNAME) as NAME
+	,C.LOOKUPID as LOOKUPID
+	,ISNULL(USERROLE.NUMBEROFROLES,0)  as NUMBEROFROLES
+FROM 
+	APPUSER AU 
+	LEFT JOIN CONSTITUENT C ON AU.CONSTITUENTID = C.ID
+	LEFT JOIN (
+		SELECT APPUSERID,COUNT(*) NUMBEROFROLES FROM SYSTEMROLEAPPUSER 
+		GROUP BY APPUSERID) USERROLE ON AU.ID = USERROLE.APPUSERID
+ORDER BY 
+	ISNULL(AU.DISPLAYNAME,AU.USERNAME) COLLATE SQL_Latin1_General_Cp437_BIN
+			]]>
+		</c:CreateProcedureSQL>
+	</SPDataList>
+
+	<!-- describe the context ID parameter for the SP (if applicable)-->
+
+	<!-- describe any parameters (other than the context ID) defined on the SP
+	<Parameters>
+		<FormMetaData xmlns="bb_appfx_commontypes">
+			<FormFields>
+				<FormField FieldID="PARAMETER1" Caption="Paramter1" DataType="REPLACE_WITH_DATATYPE"/>
+			</FormFields>
+		</FormMetaData>
+	</Parameters>-->
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+      <OutputField FieldID="ID" Caption="ID" DataType="Guid" IsHidden="true" />
+      <OutputField FieldID="NAME" Caption="User Name" DataType="String" />
+      <OutputField FieldID="LOOKUPID" Caption="Lookup ID" DataType="String" />
+      <OutputField FieldID="NUMBEROFROLES" Caption="Number of Roles" DataType="Integer" />
+		</OutputFields>
+	</Output>
+
+</DataListSpec>

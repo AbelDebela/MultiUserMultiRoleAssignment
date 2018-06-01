@@ -1,0 +1,137 @@
+<style type="text/css">
+.ApplicationUserAndRoleSummary {
+	background-image:  url("../browser/htmlforms/custom/customconfigurationsetting/images/summarybackground.png");
+	background-repeat: no-repeat;
+    padding-top: 15px;
+	padding-left: 50px;
+	width: 255px;
+	height: 50px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #869a5d;
+}
+
+</style>
+<div id="#MAP#UserMultiRoleAssignmentViewDataForm">
+<table border="0">
+<tr>
+	<td>
+		<table border="0" width="500px" cellpadding="0px" cellspacing="0px">
+		<tr>
+			<td width="30%" valign="top">
+				<table border="0" width="100%" cellpadding="0px" cellspacing="0px">
+				<tr>
+					<td width="100%"  valign="top">
+						<table width="100%" border="0" cellpadding="0px" cellspacing="0px">
+						<tr>
+							<td nowrap="nowrap">
+								<table border="0" width="100%" cellpadding="0px" cellspacing="0px">
+								<tr>
+									<td align="left" width="36px" valign="top">
+										<img src="../browser/htmlforms/custom/customconfigurationsetting/images/usericon.jpg" border="0">
+										Application users
+									</td>
+								</tr>
+								<tr>
+									<td align="right">
+										<table  border="0" cellpadding="0px" cellspacing="0px">
+										<tr>
+											<td align="right"><button id="#MAP#USERSELECTALL_action"></button></td>
+											<td align="right"><button id="#MAP#USERCLEARALL_action"></button></td>
+										</tr>
+										</table>
+									</td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+						<tr id="#MAP#USERSLIST_container">
+						  <td valign="top">
+							<div id="#MAP#USERSLIST_value" style="height: 300px; width: 300px;" />
+						  </td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+			<td width="5%"></td>
+			<td width="65%">
+				<table border="0" width="100%" cellpadding="0px" cellspacing="0px">
+				<tr>
+					<td width="100%">
+					
+					
+						<table width="100%" border="0" cellpadding="0px" cellspacing="0px">
+						<tr>
+							<td colspan="2">
+								<table border="0" width="100%" cellpadding="0px" cellspacing="0px">
+								<tr>
+									<td width="41px" align="right">
+										<img src="../browser/htmlforms/custom/customconfigurationsetting/images/roleicon.jpg" border="0">
+										Roles
+									</td>
+								</tr>
+								<tr>
+									<td align="right">
+										<table  cellpadding="0px" cellspacing="0px">
+										<tr>
+											<td align="right"><button id="#MAP#ROLESELECTALL_action"></button></td>
+											<td align="right"><button id="#MAP#ROLECLEARALL_action"></button></td>
+										</tr>
+										</table>
+									</td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+						<tr id="#MAP#ROLELIST_container">
+						  <td colspan="2" valign="top">
+							<div id="#MAP#ROLELIST_value" style="height: 300px; width: 350px;" />
+						  </td>
+						</tr>
+
+						</table>
+					</td>
+				</tr>
+
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td align="right" colspan="3">
+				<table>
+				<tr>
+					<td>
+						<button id="#MAP#ASSIGNROLE_action"></button>
+					</td>
+					<td>
+						<button id="#MAP#REMOVEROLE_action"></button>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+
+	</td>
+	<td>
+		<table>
+						 <tr id="#MAP#DISPLAYNUMBEROFUSERS_container">
+							  <td colspan="2">
+								<div id="#MAP#DISPLAYNUMBEROFUSERS_value" class="ApplicationUserAndRoleSummary"></div>
+							  </td>
+							</tr>
+							<tr id="#MAP#DISPLAYNUMBEROFROLES_container">
+							  <td colspan="2">
+								<div id="#MAP#DISPLAYNUMBEROFROLES_value" class="ApplicationUserAndRoleSummary"></div>
+							  </td>
+							</tr>
+							<tr id="#MAP#DISPLAYNUMBEROFADMINS_container">
+							  <td colspan="2">
+								<div id="#MAP#DISPLAYNUMBEROFADMINS_value" class="ApplicationUserAndRoleSummary"></div>
+							  </td>
+							</tr>		
+							</table>
+	</td>
+</div>

@@ -1,0 +1,27 @@
+﻿<UIWidgetSpec
+	xmlns="bb_appfx_uiwidget"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="19234def-444c-4eb6-9a8f-21fe5e9cad25" 
+	Name="Application Users By System Role UI Widget"
+	Description="Application users by System Roles." 
+	Author="Abel C. Debela"
+	Title="Application Users By System Role"
+	>
+    
+    <DataSource>
+        <DataList ID="8a1cfe0e-54b3-4c2a-a9b8-792b8fe1fdfb">
+            <RenderStyle>
+                <Chart CategoryFieldID="SYSTEMROLENAME" ChartType="Breakdown">
+                    <ChartSeries>
+                        <Series Color="Green" ValueFieldID="NUMBEROFUSERS">
+                            <ToolTip>
+                                <ShowValue />
+                            </ToolTip>
+                        </Series>
+                    </ChartSeries>
+                </Chart>
+            </RenderStyle>
+        </DataList>
+    </DataSource>
+
+</UIWidgetSpec>

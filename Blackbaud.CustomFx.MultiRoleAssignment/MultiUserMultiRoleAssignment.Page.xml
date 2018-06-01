@@ -1,0 +1,37 @@
+﻿<PageDefinitionSpec 
+    xmlns="bb_appfx_pagedefinition" 
+    xmlns:c="bb_appfx_commontypes"
+    ID="2fecf10b-94a0-47d3-a023-a10c53140715"
+    Name="User Multi-Role Assignment Page"
+    Description="User Multi-Role Assignment Page"
+    Author="Abel C. Debela"
+    ExpressionDataFormID="00000000-0000-0000-0000-000000000000"
+    ContextRecordType="System Role"
+    >
+
+	<!-- Note:  A page can optionally have a view form associated with it as the "Expression form".  While implemented as a view data form,
+	this form has no UI in this context, and is simply used as a way of loading additional information associated with the page.  The fields
+	returned by the expression form can be used as expressions in various properties throughout the page.  To specify an expression form for this
+	page, add the following attribute:		ExpressionDataFormID="<some guid>"-->
+
+	<!-- define how the page header should appear -->
+  <PageHeader Caption="Multi User - Multi Role Assignment" />
+  <SummarySection ID="56960f62-086c-40d1-9a44-4c1d29209455" Caption="Multi-Role Assignment" HideCaption="True" DisplayStyle="Inline">
+    <DataForm ID="2156ee54-18ff-4ce6-b880-13f346911870" />
+    <SectionContext>
+      <Expression xmlns="bb_appfx_commontypes">D98DBE25-BAB4-4753-95B1-F20CA78D4E2B</Expression>
+    </SectionContext>
+  </SummarySection>
+  <Tabs>
+    <Tab Caption="Application User and System Role Matrix" ID="ef5cfe48-3199-4058-a322-0744f7af8b65">
+      <Sections>
+        <Section ID="812fe5d9-f6b2-43b9-856d-9e294c24f770" Caption="Top 6 System Roles" DisplayStyle="Inline">
+          <UIWidget ID="19234def-444c-4eb6-9a8f-21fe5e9cad25" AutoHeight="true" />
+          <SectionContext>
+            <PageContextID xmlns="bb_appfx_commontypes" />
+          </SectionContext>
+        </Section>
+      </Sections>
+    </Tab>
+  </Tabs>
+</PageDefinitionSpec>

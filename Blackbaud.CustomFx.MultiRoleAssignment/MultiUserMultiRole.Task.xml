@@ -1,0 +1,20 @@
+﻿<TaskSpec
+	xmlns="bb_appfx_task"
+	xmlns:c="bb_appfx_commontypes"
+    ID="f9363017-e2f7-45c1-89f9-b25221945060"
+    Name="Multi User - Multi Role Assignment"
+    Description="User Multi-Role Assignment"
+    Author="SILASG\adebela"
+    ImageKey="catalog:Blackbaud.AppFx.Security.Catalog.dll,Blackbaud.AppFx.Security.Catalog.application_users.png"
+    FunctionalAreaID="64bbf407-7062-4f63-bc7c-e947f3eef6aa"
+    Sequence="23"
+    Folder="Security"
+    FolderResourceKey="$$Security"
+    FolderImageKey="catalog:Blackbaud.AppFx.Security.Catalog.dll,Blackbaud.AppFx.Security.Catalog.key_32.png"
+    FolderTaskGroup="Administration"
+    FolderTaskGroupResourceKey="$$Administration"
+    FolderTaskGroupImageKey=""
+    >
+  <ResourceFile AssemblyName="Blackbaud.AppFx.Security.Catalog.dll" ClassName="Blackbaud.AppFx.Security.Catalog.SystemSecurity.ManageSystemRoles.Task" />
+  <ShowPage PageID="2fecf10b-94a0-47d3-a023-a10c53140715" TabID="00000000-0000-0000-0000-000000000000" SectionID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes" />
+</TaskSpec>

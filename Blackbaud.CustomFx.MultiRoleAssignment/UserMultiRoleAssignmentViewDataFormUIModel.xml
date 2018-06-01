@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>UserMultiRoleAssignment.View.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>UserMultiRoleAssignmentViewDataFormUIModel</ClassName>
+  <HtmlInfo GenerateHtml="true">
+    <HtmlFile>UserMultiRoleAssignmentViewDataForm.html</HtmlFile>
+    <HtmlFolder>htmlforms\custom\customconfigurationsetting\</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

@@ -1,0 +1,33 @@
+﻿<SQLStoredProcedureSpec
+	xmlns="bb_appfx_sqlstoredprocedure"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="fa920e06-a322-4db8-9cae-378c8af2a1a5"
+	Name="Application User Details"
+	Description="Application user details"
+	Author="Abel C. Debela"
+	SPName="USR_USP_GETAPPLICATIONUSERDETAIL"
+	>
+
+	<CreateProcedureSQL>
+		<![CDATA[
+create procedure dbo.USR_USP_GETAPPLICATIONUSERDETAIL
+as
+begin
+  select 
+    SRAU.ID 
+    ,AU.ID as ApplicationUserId
+    ,LEFT(SR.NAME,30) as SystemRole
+    ,SRAU.DATEADDED as SystemRoleDateAdded
+    ,AU.DATEADDED as ApplicationUserDateAdded
+    ,C.NAME as ConstituentName
+	,coalesce(AU.USERNAME, AU.DISPLAYNAME, C.NAME, 'Removed') as ApplicationUserName
+  from
+	  dbo.SYSTEMROLEAPPUSER SRAU
+	  inner join APPUSER AU ON SRAU.APPUSERID = AU.ID
+	  left join dbo.SYSTEMROLE SR ON SRAU.SYSTEMROLEID = SR.ID
+    left join dbo.CONSTITUENT C ON AU.CONSTITUENTID = C.ID
+end
+		]]>
+	</CreateProcedureSQL>
+
+</SQLStoredProcedureSpec>
