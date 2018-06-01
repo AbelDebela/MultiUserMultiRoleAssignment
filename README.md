@@ -11,4 +11,6 @@ Then you have two choices (buttons) that __assign roles__ for selected users, or
 
 Note that this solution is intended to address standard desktop security features and it doesn’t address mobile devices security features.
 
-![multiroleassignment](https://user-images.githubusercontent.com/11167096/40851816-550e7294-657d-11e8-8130-3edd12c4b1bd.PNG)
+![multiroleassignment](https://user-images.githubusercontent.com/11167096/40852133-54ce84d0-657e-11e8-8515-583f23cae3d1.PNG)
+
+![multiroleassignmenttask](https://user-images.githubusercontent.com/11167096/40851771-396d44f2-657d-11e8-93b6-3cc8a47317fc.PNG)
